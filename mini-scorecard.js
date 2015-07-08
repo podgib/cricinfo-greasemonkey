@@ -7,7 +7,9 @@
 // @grant       none
 // ==/UserScript==
 
-function setSize(frame) {
+function formatFrame(frame) {
+  var logo = frame.contentDocument.getElementsByClassName("desktopLogo")[0];
+  logo.children[0].children[0].style.display='none';
   var container = frame.contentDocument.getElementsByClassName("desktopContainer1")[0];
   var height = container.offsetHeight + "px";
   var width = container.offsetWidth + "px";
@@ -17,7 +19,7 @@ function setSize(frame) {
 }
 
 var frame = document.getElementsByTagName("iframe")[0];
-frame.onload = function() {setSize(frame);};
+frame.onload = function() {formatFrame(frame);};
 
 window.onbeforeunload = function(e) {
   return 'Close?';
